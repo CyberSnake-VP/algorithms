@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class MergeSort {
 
     //Основной метод сортировки. Принимает неотсортированный массив.
@@ -49,7 +51,7 @@ public class MergeSort {
         int i = 0, l = 0, r = 0;
 
         while (l < leftSize && r < rightSize) {
-            if (leftArray[l] > rightArray[r]) {  // поменяв условие мы можем получить направление сортировки.
+            if (leftArray[l] < rightArray[r]) {  // поменяв условие мы можем получить направление сортировки.
                 array[i] = leftArray[l];
                 i++;
                 l++;
@@ -72,9 +74,11 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] array = {1, 3, 5, 2, 1, 6, 4};
+        Random random = new Random();
+        int[] array = new int[10];
         System.out.println("unsorted");
         for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(10);
             System.out.print(array[i] + " ");
         }
         System.out.println();
