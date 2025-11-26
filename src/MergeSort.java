@@ -19,6 +19,8 @@ public class MergeSort {
         int i = 0; // указатель на индекс левого массива
         int j = 0; // указатель на индекс правого массива
 
+
+        /** заполняем наши левый и правый массивы данными из исходного массива*/
         for (; i < length; i++) {
             if (i < middle) {
                 leftArray[i] = array[i];
@@ -27,6 +29,9 @@ public class MergeSort {
                 j++;
             }
         }
+        /** повторяем метод для левого и правого массивов до базового случая рекурсии,
+         * после чего предаем два массива и исходный
+         * во вспомогательную функцию для объединения массивов(слияния)*/
         mergeSort(leftArray);
         mergeSort(rightArray);
         merge(leftArray, rightArray, array);
@@ -34,12 +39,17 @@ public class MergeSort {
 
 
     private static void merge(int[] leftArray, int[] rightArray, int[] array) {
+
+        /** в исходный массив кладем нужный элемент из левого или правого массива в зависимости от условия*/
+
+        // получаем размер левого и правого массивов. Чтобы понимать, когда индекс выйдет за пределы какого-либо из массивов
+        // запишем оставшееся элементы из оставшейся части не законченного подмассива
         int leftSize = array.length / 2;
         int rightSize = array.length - leftSize;
         int i = 0, l = 0, r = 0;
 
         while (l < leftSize && r < rightSize) {
-            if (leftArray[l] < rightArray[r]) {
+            if (leftArray[l] > rightArray[r]) {  // поменяв условие мы можем получить направление сортировки.
                 array[i] = leftArray[l];
                 i++;
                 l++;
